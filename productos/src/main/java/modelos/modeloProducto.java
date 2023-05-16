@@ -57,6 +57,8 @@ public class modeloProducto extends Conexion{
 				pst.setDouble(4, producto.getPrecio());
 				pst.setDate(5, new Date(producto.getCaducidad().getTime()));
 				
+				pst.execute();
+				
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

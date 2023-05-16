@@ -46,7 +46,7 @@ public class InsertarProducto extends HttpServlet {
 		producto.setCantidad(cantidad);
 		producto.setPrecio(precio);
 		try {
-			producto.setCaducidad(caducidad.parse(request.getParameter("cantidad")));
+			producto.setCaducidad(caducidad.parse(request.getParameter("caducidad")));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -57,6 +57,7 @@ public class InsertarProducto extends HttpServlet {
 		mP.InsertarProductos(producto);
 		mP.cerrar();
 		
+		request.getRequestDispatcher("VerProductos").forward(request, response);
 	}
 
 	/**
