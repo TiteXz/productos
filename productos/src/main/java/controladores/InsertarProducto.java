@@ -1,7 +1,8 @@
 package controladores;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,16 +14,16 @@ import clases.Producto;
 import modelos.modeloProducto;
 
 /**
- * Servlet implementation class VerProductos
+ * Servlet implementation class InsertarProducto
  */
-@WebServlet("/VerProductos")
-public class VerProductos extends HttpServlet {
+@WebServlet("/InsertarProducto")
+public class InsertarProducto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public VerProductos() {
+    public InsertarProducto() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,15 +33,30 @@ public class VerProductos extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-
+		int codigo = Integer.parseInt(request.getParameter("codigo"));
+		String nombre = request.getParameter("nombre");
+		int cantidad = Integer.parseInt(request.getParameter("cantidad"));
+		Double precio = Double.parseDouble(request.getParameter("precio"));
+		SimpleDateFormat caducidad = new SimpleDateFormat("YYYY-MM-DD");
+		
+		Producto producto = new Producto();
+		
+		producto.setCodigo(codigo);
+		producto.setNombre(nombre);
+		producto.setCantidad(cantidad);
+		producto.setPrecio(precio);
+		try {
+			producto.setCaducidad(caducidad.parse(request.getParameter("cantidad")));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
 		modeloProducto mP = new modeloProducto();
-	
+		
 		mP.Conectar();
-		ArrayList<Producto> productos = mP.verProductos();
+		mP.InsertarProductos(producto);
 		mP.cerrar();
 		
-		request.setAttribute("productos", productos);
-		request.getRequestDispatcher("VistaProductos.jsp").forward(request, response);
 	}
 
 	/**
@@ -49,6 +65,8 @@ public class VerProductos extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		
+		
 	}
 
 }

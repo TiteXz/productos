@@ -1,4 +1,4 @@
-package Clases;
+package clases;
 
 import java.util.Date;
 
@@ -10,21 +10,19 @@ public class Producto {
 	private int cantidad;
 	private double precio;
 	private Date caducidad;
-	private int id_seccion;
+	private secciones seccion;
 	
 	public Producto() {
-		super();
 	}
 
-	public Producto(int id, int codigo, String nombre, int cantidad, double precio, Date caducidad, int id_seccion) {
-		super();
+	public Producto(int id, int codigo, String nombre, int cantidad, double precio, Date caducidad, secciones seccion) {
 		this.id = id;
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.cantidad = cantidad;
 		this.precio = precio;
 		this.caducidad = caducidad;
-		this.id_seccion = id_seccion;
+		this.seccion = seccion;
 	}
 
 	public int getId() {
@@ -75,18 +73,18 @@ public class Producto {
 		this.caducidad = caducidad;
 	}
 
-	public int getId_seccion() {
-		return id_seccion;
+	public secciones getSeccion() {
+		return seccion;
 	}
 
-	public void setId_seccion(int id_seccion) {
-		this.id_seccion = id_seccion;
+	public void setSeccion(secciones seccion) {
+		this.seccion = seccion;
 	}
 
 	
 	public String toString() {
 		return "producto [id=" + id + ", codigo=" + codigo + ", nombre=" + nombre + ", cantidad=" + cantidad
-				+ ", precio=" + precio + ", caducidad=" + caducidad + ", id_seccion=" + id_seccion + "]";
+				+ ", precio=" + precio + ", caducidad=" + caducidad + ", id_seccion=" + seccion + "]";
 	}
 	
 	

@@ -1,16 +1,14 @@
-package Clases;
+package clases;
 
-public class supermercado {
+public class secciones {
 
 	private int id;
 	private String nombre;
 	
-	public supermercado() {
-		super();
+	public secciones() {
 	}
 
-	public supermercado(int id, String nombre) {
-		super();
+	public secciones(int id, String nombre) {
 		this.id = id;
 		this.nombre = nombre;
 	}
@@ -32,9 +30,8 @@ public class supermercado {
 	}
 
 	public String toString() {
-		return "supermercado [id=" + id + ", nombre=" + nombre + "]";
+		return "secciones [id=" + id + ", nombre=" + nombre + "]";
 	}
-	
 	
 	
 	
