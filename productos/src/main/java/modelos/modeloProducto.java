@@ -25,7 +25,7 @@ public class modeloProducto extends Conexion{
 				Producto producto = new Producto();
 				
 				producto.setId(resultado.getInt("id"));
-				producto.setCodigo(resultado.getInt("codigo"));
+				producto.setCodigo(resultado.getString("codigo"));
 				producto.setNombre(resultado.getString("nombre"));
 				producto.setCantidad(resultado.getInt("cantidad"));
 				producto.setPrecio(resultado.getDouble("precio"));
@@ -53,7 +53,7 @@ public class modeloProducto extends Conexion{
 			PreparedStatement pst = conexion.prepareStatement("INSERT INTO productos( codigo, nombre, cantidad, precio, caducidad, id_seccion) VALUES (?,?,?,?,?,?)");
 				
 				
-				pst.setInt(1, producto.getCodigo());
+				pst.setString(1, producto.getCodigo());
 				pst.setString(2, producto.getNombre());
 				pst.setInt(3, producto.getCantidad());
 				pst.setDouble(4, producto.getPrecio());
@@ -68,13 +68,13 @@ public class modeloProducto extends Conexion{
 		}
 	}
 	
-	public boolean getCodigo(int codigo) {
+	public boolean getCodigo(String codigo) {
 		boolean encontrado = false;
 		
 		PreparedStatement pst;
 		try {
 			pst = conexion.prepareStatement("SELECT codigo FROM productos WHERE codigo = ?");
-			pst.setInt(1, codigo);
+			pst.setString(1, codigo);
 			
 			ResultSet resultado = pst.executeQuery();
 			
@@ -90,7 +90,7 @@ public class modeloProducto extends Conexion{
 			
 		}
 	
-	public Producto getProducto(int codigo) {
+	public Producto getProducto(String codigo) {
 		Producto producto = new Producto();
 		modeloSeccion mS = new modeloSeccion();
 		
@@ -98,7 +98,7 @@ public class modeloProducto extends Conexion{
 		try {
 			pst = conexion.prepareStatement("SELECT * FROM productos WHERE codigo = ?");
 		
-			pst.setInt(1, codigo);
+			pst.setString(1, codigo);
 			
 			ResultSet resultado = pst.executeQuery();
 			
@@ -129,7 +129,7 @@ public class modeloProducto extends Conexion{
 		try {
 			pst = conexion.prepareStatement("UPDATE productos SET nombre=?, cantidad=?, precio=?, caducidad=?, id_seccion=? WHERE codigo = ?");
 			
-			pst.setInt(6, producto.getCodigo());
+			pst.setString(6, producto.getCodigo());
 			pst.setString(1, producto.getNombre());
 			pst.setInt(2, producto.getCantidad());
 			pst.setDouble(3, producto.getPrecio());

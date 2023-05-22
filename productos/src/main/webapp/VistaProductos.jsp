@@ -28,6 +28,17 @@ body{
 	</ul>
 	</div>
 	</c:if>
+	
+	<form method="GET" action="BuscadorCodNombre">
+		<div class="input-container">
+			<input name="codOnombre" id="codOnombre" placeholder="Buscador" class="input-field" type="text"> 
+			<label for="input-field" class="input-label"></label>
+			<span class="input-highlight"></span>
+		</div>
+	</form>
+	
+	<br><br>
+	
 <a href="FormularioInsertar">CREAR</a>
 
 <table>

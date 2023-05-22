@@ -39,7 +39,7 @@ public class modificarProducto extends HttpServlet {
 		modeloSeccion mS = new modeloSeccion();
 		modeloProducto mP = new modeloProducto();
 		
-		int codigo = Integer.parseInt(request.getParameter("codigo"));
+		String codigo = request.getParameter("codigo");
 		String nombre = request.getParameter("nombre");
 		int cantidad = Integer.parseInt(request.getParameter("cantidad"));
 		double precio = Double.parseDouble(request.getParameter("precio"));

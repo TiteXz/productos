@@ -40,7 +40,7 @@ public class InsertarProducto extends HttpServlet {
 		modeloProducto mP = new modeloProducto();
 		boolean error = false;
 		
-		int codigo = Integer.parseInt(request.getParameter("codigo"));
+		String codigo = request.getParameter("codigo");
 		String nombre = request.getParameter("nombre");
 		int cantidad = Integer.parseInt(request.getParameter("cantidad"));
 		Double precio = Double.parseDouble(request.getParameter("precio"));

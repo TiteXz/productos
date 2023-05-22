@@ -38,7 +38,7 @@ public class FormularioModificar extends HttpServlet {
 		modeloProducto mP = new modeloProducto();
 		modeloSeccion mS = new modeloSeccion();
 		
-		int codigo = Integer.parseInt(request.getParameter("codigo"));
+		String codigo = request.getParameter("codigo");
 		
 		mP.Conectar();
 		Producto producto = mP.getProducto(codigo);
