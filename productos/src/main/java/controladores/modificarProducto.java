@@ -13,21 +13,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import clases.Producto;
-import clases.secciones;
 import modelos.modeloProducto;
 import modelos.modeloSeccion;
 
 /**
- * Servlet implementation class InsertarProducto
+ * Servlet implementation class modificarProducto
  */
-@WebServlet("/InsertarProducto")
-public class InsertarProducto extends HttpServlet {
+@WebServlet("/modificarProducto")
+public class modificarProducto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InsertarProducto() {
+    public modificarProducto() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,19 +35,17 @@ public class InsertarProducto extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+				
 		modeloSeccion mS = new modeloSeccion();
 		modeloProducto mP = new modeloProducto();
-		boolean error = false;
 		
 		int codigo = Integer.parseInt(request.getParameter("codigo"));
 		String nombre = request.getParameter("nombre");
 		int cantidad = Integer.parseInt(request.getParameter("cantidad"));
-		Double precio = Double.parseDouble(request.getParameter("precio"));
+		double precio = Double.parseDouble(request.getParameter("precio"));
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String nombre_seccion = request.getParameter("nombre_seccion");
-		mS.Conectar();
-		secciones id_seccion = mS.getSeccionId(nombre_seccion);
-		mS.cerrar();
+		
 		
 		Producto producto = new Producto();
 		
@@ -57,29 +54,18 @@ public class InsertarProducto extends HttpServlet {
 		producto.setCantidad(cantidad);
 		producto.setPrecio(precio);
 		try {
-		producto.setCaducidad(sdf.parse(request.getParameter("caducidad")));
+			producto.setCaducidad(sdf.parse(request.getParameter("caducidad")));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		producto.setSeccion(id_seccion);
+		mS.Conectar();
+		producto.setSeccion(mS.getSeccionId(nombre_seccion));
+		mS.cerrar();
 		
 		mP.Conectar();
-		ArrayList<Producto> productos = mP.verProductos();
-		boolean codigoValidar = mP.getCodigo(codigo);
+		mP.modificarProducto(producto);
 		mP.cerrar();
 		
-		
-		
-			if((codigoValidar!= true) && (precio>= 0) && (cantidad>= 0) && (producto.getCaducidad().after(new Date())) && (!nombre_seccion.equals(""))){
-				mP.Conectar();
-				mP.InsertarProductos(producto);
-				mP.cerrar();
-				}else {
-					error = true;
-					request.setAttribute("error", error);
-				}
-		
-
 		request.getRequestDispatcher("VerProductos").forward(request, response);
 	}
 
@@ -89,8 +75,6 @@ public class InsertarProducto extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-		
-		
 	}
 
 }

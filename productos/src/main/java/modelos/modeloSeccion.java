@@ -35,6 +35,29 @@ public class modeloSeccion extends Conexion{
 		return seccion;
 	}
 	
+	public secciones getSeccionId(String nombre) {
+		secciones seccion = new secciones();
+		
+		try {
+			PreparedStatement pst = conexion.prepareStatement("SELECT id FROM secciones WHERE nombre=?");
+		
+			pst.setString(1, nombre);
+		
+			ResultSet resultado = pst.executeQuery();
+		
+			resultado.next();
+		
+			seccion.setId(resultado.getInt("id"));
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+			
+		return seccion;
+	}
+	
+	
+	
 	public ArrayList<secciones> getSecciones(){
 		ArrayList<secciones> secciones = new ArrayList<secciones>();
 		

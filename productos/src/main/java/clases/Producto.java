@@ -80,12 +80,6 @@ public class Producto {
 	public void setSeccion(secciones seccion) {
 		this.seccion = seccion;
 	}
-
-	
-	public String toString() {
-		return "producto [id=" + id + ", codigo=" + codigo + ", nombre=" + nombre + ", cantidad=" + cantidad
-				+ ", precio=" + precio + ", caducidad=" + caducidad + ", id_seccion=" + seccion + "]";
-	}
 	
 	
 }

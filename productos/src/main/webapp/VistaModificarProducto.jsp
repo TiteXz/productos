@@ -1,51 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 <meta charset="ISO-8859-1">
-<title>Crear</title>
+<title>Modificar</title>
 <style>
 form{
 	margin: 50px 0 0 50px;
 }
 
-option{
+select{
 	width:100px;
 }
 </style>
 </head>
-
-
 <body>
 
-	<c:if test="${error eq true}" var="error">
-	<div class= "alert alert-danger" role="alert">Has introducido algun dato erroneo</div>
-	</c:if>
-	<form method="GET" action="InsertarProducto">
+
+	<form method="GET" action="modificarProducto">
 							<label><input  type="number" id="codigo" name="codigo"
-								placeholder="codigo" /></label> <br> <br> 
+								value="${producto.codigo}" /></label> <br> <br> 
 								<label><input type="text" id="nombre" name="nombre" 
-								placeholder="nombre" /></label>
+								value="${producto.nombre}" /></label>
 							<br> <br> <label><input type="number"
-								id="cantidad" name="cantidad" placeholder="cantidad" /></label> <br>
+								id="cantidad" name="cantidad" value="${producto.cantidad}" /></label> <br>
 							<br> <label><input type="number" id="precio"
-								name="precio" placeholder="precio" /></label> <br> <br>
+								name="precio" value="${producto.precio}" /></label> <br> <br>
 							<label><input type="date" id="caducidad"
-								name="caducidad" placeholder="caducidad" /></label> <br> <br>
+								name="caducidad" value="${producto.caducidad}" /></label> <br> <br>
 								<label for="inputState">nombre_secciones</label>
                     <select id="inputState" class="form-control" id="nombre_seccion" name="nombre_seccion">
-                        <option></option>
-                        <c:forEach items="${secciones}" var="seccion">
-                            <option>${seccion.nombre}</option>
+                      <option>${producto.seccion.nombre}</option>
+                       <c:forEach items="${secciones}" var="seccion">
+                        <option>${seccion.nombre}</option>
                         </c:forEach>
                     </select>
-							<input id="Crear" type="submit" value="CREAR" />
+							<input id="Modificar" type="submit" value="Modificar" />
 							
 
 	</form>
-	
+
 </body>
 </html>
