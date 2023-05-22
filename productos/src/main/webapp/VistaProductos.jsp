@@ -29,6 +29,18 @@ body{
 	</div>
 	</c:if>
 	
+	<form method="GET" action="FiltrarPrecio">
+	<div class="input-group">
+  <div class="input-group-prepend">
+    <input type="submit" value="FiltrarPrecio">
+  </div>
+  <input name="minPrecio" placeholder="minPrecio" type="number" class="form-control">
+  <input name="maxPrecio" placeholder="maxPrecio" type="number" class="form-control">
+</div>
+</form>
+	
+	<br><br>
+	
 	<form method="GET" action="BuscadorCodNombre">
 		<div class="input-container">
 			<input name="codOnombre" id="codOnombre" placeholder="Buscador" class="input-field" type="text"> 
