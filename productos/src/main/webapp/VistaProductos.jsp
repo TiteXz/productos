@@ -54,6 +54,29 @@ body{
 <a href="FormularioInsertar">CREAR</a>
 
 <table>
+<tbody>
+	    <tr>
+	      <th scope="row">id</th>
+	      <td>codigo</td>
+	      <td>nombre</td>
+	      <td>cantidad</td>
+	      <td>precio</td>
+	      <td>caducidad</td>
+	      <td>nombre_seccion</td>
+	      </tr>
+	  </tbody>
+	  <tbody>
+	    <tr>
+	      <th> </th>
+	      <td><a href="OrdenarPorCod?codOrder=ASC">ASC</a></td>
+	      </tr>
+	  </tbody>
+	  <tbody>
+	    <tr>
+	      <th> </th>
+	      <td><a href="OrdenarPorCod?codOrder=DESC">DESC</a></td>
+	      </tr>
+	  </tbody>
 	<tbody>
  <c:forEach items="${productos}" var="producto">
 	    <tr>

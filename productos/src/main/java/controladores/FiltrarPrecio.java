@@ -58,7 +58,10 @@ public class FiltrarPrecio extends HttpServlet {
             Producto producto = iterator.next();
             Double precioActual = producto.getPrecio();
            
-            if ((maxPrecio == null || precioActual <= maxPrecio) && (minPrecio == null || precioActual >= minPrecio)) {
+            if(minPrecio==0 && maxPrecio==0) {
+            	request.setAttribute("productos", productos);
+                request.getRequestDispatcher("VistaProductos.jsp").forward(request, response);
+        	}else if ((maxPrecio == null || precioActual <= maxPrecio) && (minPrecio == null || precioActual >= minPrecio)) {
             	
             } else {
                 iterator.remove();
