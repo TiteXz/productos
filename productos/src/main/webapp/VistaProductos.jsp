@@ -87,6 +87,7 @@ body{
 	      <td>${producto.precio}</td>
 	      <td>${producto.caducidad}</td>
 	      <td>${producto.seccion.nombre}</td>
+	      <td><a href="EliminarProducto?codigo=${producto.codigo}&&cantidad=${producto.cantidad}">Eliminar</a></td>
 	      <td><a href="FormularioModificar?codigo=${producto.codigo}">Modificar</a></td>
 	      </tr>
 	  </c:forEach>

@@ -35,15 +35,13 @@ public class modeloProducto extends Conexion{
 				productos.add(producto);
 				
 			}
+			mS.cerrar();
+			return productos;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		mS.cerrar();
 		return productos;
-		
-		
-		
+				
 	}
 	
 	public void InsertarProductos(Producto producto) {
@@ -123,7 +121,7 @@ public class modeloProducto extends Conexion{
 	
 	public Producto getIdProducto(String codigo) {
 		Producto producto = new Producto();
-		modeloSeccion mS = new modeloSeccion();
+	
 		
 		PreparedStatement pst;
 		try {
@@ -168,6 +166,56 @@ public class modeloProducto extends Conexion{
 		
 	}
 		
+	
+	
+	public boolean relacionConSupermercado(int id_producto) {
+		boolean relacion = false;
+		
+		try {
+			PreparedStatement pst = conexion.prepareStatement("SELECT * FROM productos_supermercados WHERE id_producto = ?");
+		
+			ResultSet resultado = pst.executeQuery();
+			
+			pst.setInt(1, id_producto);
+			
+			if(resultado.next()) {
+				relacion = true;
+			}
+			
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return relacion;
+	}
+	
+	public void restar1(int id_producto) {
+		try {
+			PreparedStatement pst = conexion.prepareStatement("UPDATE productos set cantidad = cantidad - 1 WHERE id = ?");
+			
+			pst.setInt(1, id_producto);
+			
+			pst.execute();
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void eliminarProducto(int id_producto) {
+		try {
+			PreparedStatement pst = conexion.prepareStatement("DELETE FROM productos WHERE id = ?");
+		
+			pst.setInt(1, id_producto);
+			
+			pst.execute();
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
 		
 	}
 
