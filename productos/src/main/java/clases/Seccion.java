@@ -1,14 +1,14 @@
 package clases;
 
-public class secciones {
+public class Seccion {
 
 	private int id;
 	private String nombre;
 	
-	public secciones() {
+	public Seccion() {
 	}
 
-	public secciones(int id, String nombre) {
+	public Seccion(int id, String nombre) {
 		this.id = id;
 		this.nombre = nombre;
 	}

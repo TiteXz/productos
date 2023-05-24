@@ -1,15 +1,15 @@
 package clases;
 
-public class supermercado {
+public class Supermercado {
 
 	private int id;
 	private String nombre;
 	
-	public supermercado() {
+	public Supermercado() {
 		super();
 	}
 
-	public supermercado(int id, String nombre) {
+	public Supermercado(int id, String nombre) {
 		super();
 		this.id = id;
 		this.nombre = nombre;

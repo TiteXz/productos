@@ -5,14 +5,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import clases.secciones;
+import clases.Seccion;
 
 public class modeloSeccion extends Conexion{
 
 	
 	
-	public secciones getSeccion(int id) {
-		secciones seccion = new secciones();
+	public Seccion getSeccion(int id) {
+		Seccion seccion = new Seccion();
 		
 		try {
 			PreparedStatement pst = conexion.prepareStatement("SELECT * FROM secciones WHERE id=?");
@@ -35,8 +35,8 @@ public class modeloSeccion extends Conexion{
 		return seccion;
 	}
 	
-	public secciones getSeccionId(String nombre) {
-		secciones seccion = new secciones();
+	public Seccion getSeccionId(String nombre) {
+		Seccion seccion = new Seccion();
 		
 		try {
 			PreparedStatement pst = conexion.prepareStatement("SELECT id FROM secciones WHERE nombre=?");
@@ -58,8 +58,8 @@ public class modeloSeccion extends Conexion{
 	
 	
 	
-	public ArrayList<secciones> getSecciones(){
-		ArrayList<secciones> secciones = new ArrayList<secciones>();
+	public ArrayList<Seccion> getSecciones(){
+		ArrayList<Seccion> secciones = new ArrayList<Seccion>();
 		
 		try {
 			PreparedStatement pst = conexion.prepareStatement("SELECT * FROM secciones");
@@ -67,7 +67,7 @@ public class modeloSeccion extends Conexion{
 		ResultSet resultado = pst.executeQuery();
 		
 		while(resultado.next()) {
-			secciones seccion = new secciones();
+			Seccion seccion = new Seccion();
 			
 			seccion.setId(resultado.getInt("id"));
 			seccion.setNombre(resultado.getString("nombre"));

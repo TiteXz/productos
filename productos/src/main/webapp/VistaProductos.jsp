@@ -34,8 +34,8 @@ body{
   <div class="input-group-prepend">
     <input type="submit" value="FiltrarPrecio">
   </div>
-  <input name="minPrecio" placeholder="minPrecio" type="number" class="form-control">
-  <input name="maxPrecio" placeholder="maxPrecio" type="number" class="form-control">
+  <input name="minPrecio" placeholder="minPrecio" type="text" class="form-control">
+  <input name="maxPrecio" placeholder="maxPrecio" type="text" class="form-control">
 </div>
 </form>
 	

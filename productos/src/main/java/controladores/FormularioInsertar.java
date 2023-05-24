@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import clases.secciones;
+import clases.Seccion;
+import clases.Supermercado;
 import modelos.modeloSeccion;
+import modelos.modeloSupermercado;
 
 /**
  * Servlet implementation class FormularioInsertar
@@ -32,11 +34,17 @@ public class FormularioInsertar extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		modeloSeccion mS = new modeloSeccion();
+		modeloSupermercado mSu = new modeloSupermercado();
 		
 		mS.Conectar();
-		ArrayList<secciones> secciones = mS.getSecciones();
+		ArrayList<Seccion> secciones = mS.getSecciones();
 		mS.cerrar();
 		
+		mSu.Conectar();
+		ArrayList<Supermercado> supermercados = mSu.getSupermercados();
+		mSu.cerrar();
+		
+		request.setAttribute("supermercados", supermercados);
 		request.setAttribute("secciones",secciones);
 		request.getRequestDispatcher("VistaCrearProducto.jsp").forward(request, response);
 		

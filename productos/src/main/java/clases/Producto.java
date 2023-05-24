@@ -10,12 +10,12 @@ public class Producto {
 	private int cantidad;
 	private double precio;
 	private Date caducidad;
-	private secciones seccion;
+	private Seccion seccion;
 	
 	public Producto() {
 	}
 
-	public Producto(int id, String codigo, String nombre, int cantidad, double precio, Date caducidad, secciones seccion) {
+	public Producto(int id, String codigo, String nombre, int cantidad, double precio, Date caducidad, Seccion seccion) {
 		this.id = id;
 		this.codigo = codigo;
 		this.nombre = nombre;
@@ -73,11 +73,11 @@ public class Producto {
 		this.caducidad = caducidad;
 	}
 
-	public secciones getSeccion() {
+	public Seccion getSeccion() {
 		return seccion;
 	}
 
-	public void setSeccion(secciones seccion) {
+	public void setSeccion(Seccion seccion) {
 		this.seccion = seccion;
 	}
 

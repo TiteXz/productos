@@ -121,6 +121,30 @@ public class modeloProducto extends Conexion{
 		return producto;
 	}
 	
+	public Producto getIdProducto(String codigo) {
+		Producto producto = new Producto();
+		modeloSeccion mS = new modeloSeccion();
+		
+		PreparedStatement pst;
+		try {
+			pst = conexion.prepareStatement("SELECT id FROM productos WHERE codigo = ?");
+		
+			pst.setString(1, codigo);
+			
+			ResultSet resultado = pst.executeQuery();
+			
+			resultado.next();
+			
+			producto.setId(resultado.getInt("id"));
+			
+			pst.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return producto;
+	}
+	
 	public void modificarProducto(Producto producto) {
 		
 		

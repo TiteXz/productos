@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -13,8 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import clases.Producto;
-import clases.secciones;
+import clases.Seccion;
 import modelos.modeloProducto;
+import modelos.modeloProducto_Supermercado;
 import modelos.modeloSeccion;
 
 /**
@@ -38,8 +40,12 @@ public class InsertarProducto extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		modeloSeccion mS = new modeloSeccion();
 		modeloProducto mP = new modeloProducto();
+		modeloProducto_Supermercado mPS = new modeloProducto_Supermercado();
 		boolean error = false;
 		
+		String[] supers_ids = request.getParameterValues("supers");
+		int[] idsSupermercados = Arrays.stream(supers_ids).mapToInt(Integer::parseInt).toArray();
+
 		String codigo = request.getParameter("codigo");
 		String nombre = request.getParameter("nombre");
 		int cantidad = Integer.parseInt(request.getParameter("cantidad"));
@@ -47,7 +53,7 @@ public class InsertarProducto extends HttpServlet {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String nombre_seccion = request.getParameter("nombre_seccion");
 		mS.Conectar();
-		secciones id_seccion = mS.getSeccionId(nombre_seccion);
+		Seccion id_seccion = mS.getSeccionId(nombre_seccion);
 		mS.cerrar();
 		
 		Producto producto = new Producto();
@@ -66,6 +72,7 @@ public class InsertarProducto extends HttpServlet {
 		mP.Conectar();
 		ArrayList<Producto> productos = mP.verProductos();
 		boolean codigoValidar = mP.getCodigo(codigo);
+		Producto id_Producto = mP.getIdProducto(codigo);
 		mP.cerrar();
 		
 		
@@ -74,6 +81,9 @@ public class InsertarProducto extends HttpServlet {
 				mP.Conectar();
 				mP.InsertarProductos(producto);
 				mP.cerrar();
+				mPS.Conectar();
+				mPS.InsertarProductos_supers(id_Producto.getId(), idsSupermercados);
+				mPS.cerrar();
 				}else {
 					error = true;
 					request.setAttribute("error", error);

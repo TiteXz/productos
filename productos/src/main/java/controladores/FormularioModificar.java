@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import clases.Producto;
-import clases.secciones;
+import clases.Seccion;
 import modelos.modeloProducto;
 import modelos.modeloSeccion;
 
@@ -45,7 +45,7 @@ public class FormularioModificar extends HttpServlet {
 		mP.cerrar();
 		
 		mS.Conectar();
-		ArrayList<secciones> secciones = mS.getSecciones();
+		ArrayList<Seccion> secciones = mS.getSecciones();
 		mS.cerrar();
 		
 		
