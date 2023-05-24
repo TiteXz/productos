@@ -43,7 +43,11 @@ public class InsertarProducto extends HttpServlet {
 		modeloProducto_Supermercado mPS = new modeloProducto_Supermercado();
 		boolean error = false;
 		
+		
 		String[] supers_ids = request.getParameterValues("supers");
+		if(supers_ids.length == 0 || supers_ids == null){
+			supers_ids = new String[] {"0"};
+		}
 		int[] idsSupermercados = Arrays.stream(supers_ids).mapToInt(Integer::parseInt).toArray();
 
 		String codigo = request.getParameter("codigo");
