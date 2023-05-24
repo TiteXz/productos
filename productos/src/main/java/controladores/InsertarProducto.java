@@ -72,7 +72,6 @@ public class InsertarProducto extends HttpServlet {
 		mP.Conectar();
 		ArrayList<Producto> productos = mP.verProductos();
 		boolean codigoValidar = mP.getCodigo(codigo);
-		Producto id_Producto = mP.getIdProducto(codigo);
 		mP.cerrar();
 		
 		
@@ -82,7 +81,7 @@ public class InsertarProducto extends HttpServlet {
 				mP.InsertarProductos(producto);
 				mP.cerrar();
 				mPS.Conectar();
-				mPS.InsertarProductos_supers(id_Producto.getId(), idsSupermercados);
+				mPS.InsertarProductos_supers(mPS.getMaxId(), idsSupermercados);
 				mPS.cerrar();
 				}else {
 					error = true;
