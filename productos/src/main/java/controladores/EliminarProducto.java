@@ -40,22 +40,23 @@ public class EliminarProducto extends HttpServlet {
 		
 		mP.Conectar();
 		int id_producto = mP.getIdProducto(codigo).getId();
-		mP.cerrar();
 		boolean relacionConSupermercado = mP.relacionConSupermercado(id_producto);
 		
+		mP.cerrar();
 		
+		System.out.println(relacionConSupermercado);
 		if(cantidad > 0) {
 			mP.Conectar();
 			mP.restar1(id_producto);
 			mP.cerrar();
-		}else if (relacionConSupermercado == false && cantidad == 0) {
-			mP.Conectar();
-			mP.eliminarProducto(id_producto);
-			mP.cerrar();
-		}else if(relacionConSupermercado == true && cantidad == 0){
+		}else if (relacionConSupermercado == true && cantidad == 0) {
 			mPS.Conectar();
 			mPS.eliminarProduDeSupers(id_producto);
 			mPS.cerrar();
+		}else if(relacionConSupermercado == false && cantidad == 0){
+			mP.Conectar();
+			mP.eliminarProducto(id_producto);
+			mP.cerrar();
 		}
 		
 		mP.Conectar();

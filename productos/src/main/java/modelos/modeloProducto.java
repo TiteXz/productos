@@ -173,10 +173,10 @@ public class modeloProducto extends Conexion{
 		
 		try {
 			PreparedStatement pst = conexion.prepareStatement("SELECT * FROM productos_supermercados WHERE id_producto = ?");
-		
+			pst.setInt(1, id_producto);
 			ResultSet resultado = pst.executeQuery();
 			
-			pst.setInt(1, id_producto);
+			
 			
 			if(resultado.next()) {
 				relacion = true;
@@ -215,6 +215,19 @@ public class modeloProducto extends Conexion{
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public void eliminarProductoConCode(String codigo) {
+		try {
+			PreparedStatement pst = conexion.prepareStatement("DELETE FROM productos WHERE codigo = ?");
+		
+			pst.setString(1, codigo);
+			
+			pst.execute();
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 		
 	}

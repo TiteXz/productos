@@ -51,6 +51,14 @@ body{
 	
 	<br><br>
 	
+	<form method="GET" action="EliminarMultiple1">
+		<div class="input-container">
+			<input name="codes" id="codes" placeholder="Eliminar separando con , " class="input-field" type="text"> 
+			<label for="input-field" class="input-label"></label>
+			<span class="input-highlight"></span>
+		</div>
+	</form>
+	
 <a href="FormularioInsertar">CREAR</a>
 
 <table>

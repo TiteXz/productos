@@ -44,11 +44,9 @@ public class InsertarProducto extends HttpServlet {
 		boolean error = false;
 		
 		
-		String[] supers_ids = request.getParameterValues("supers");
-		if(supers_ids.length == 0 || supers_ids == null){
-			supers_ids = new String[] {"0"};
-		}
-		int[] idsSupermercados = Arrays.stream(supers_ids).mapToInt(Integer::parseInt).toArray();
+		
+		
+		
 
 		String codigo = request.getParameter("codigo");
 		String nombre = request.getParameter("nombre");
@@ -85,7 +83,11 @@ public class InsertarProducto extends HttpServlet {
 				mP.InsertarProductos(producto);
 				mP.cerrar();
 				mPS.Conectar();
-				mPS.InsertarProductos_supers(mPS.getMaxId(), idsSupermercados);
+				if(request.getParameterValues("supers") != null){
+					String[] supers_ids = request.getParameterValues("supers");
+					int[] idsSupermercados = Arrays.stream(supers_ids).mapToInt(Integer::parseInt).toArray();
+					mPS.InsertarProductos_supers(mPS.getMaxId(), idsSupermercados);
+				}
 				mPS.cerrar();
 				}else {
 					error = true;
