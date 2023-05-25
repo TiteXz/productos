@@ -60,7 +60,7 @@ body{
 	</form>
 	
 <a href="FormularioInsertar">CREAR</a>
-
+<form method="post" action="EliminarCheck">
 <table>
 <tbody>
 	    <tr>
@@ -97,9 +97,12 @@ body{
 	      <td>${producto.seccion.nombre}</td>
 	      <td><a href="EliminarProducto?codigo=${producto.codigo}&&cantidad=${producto.cantidad}">Eliminar</a></td>
 	      <td><a href="FormularioModificar?codigo=${producto.codigo}">Modificar</a></td>
+		  <td><input class="form-check-input" type="checkbox" value="${producto.id}"id="flexCheckDefault" name="idsproductos"></td>
 	      </tr>
 	  </c:forEach>
 	  </tbody>
 </table>
+ <input type="submit" value="EliminarCheck">
+</form>
 </body>
 </html>
