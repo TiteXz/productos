@@ -12,6 +12,11 @@
 body{
 	margin: 50px 0 0 50px;
 }
+
+.bi{
+width:50px;
+height:50px;
+}
 </style>
 </head>
 
@@ -28,6 +33,11 @@ body{
 	</ul>
 	</div>
 	</c:if>
+	
+	<div class="cesta">
+	<a><i class="bi bi-cart">carro</i></a>
+	<a>${carrito}</a>
+	</div>
 	
 	<form method="GET" action="FiltrarPrecio">
 	<div class="input-group">
@@ -95,8 +105,9 @@ body{
 	      <td>${producto.precio}</td>
 	      <td>${producto.caducidad}</td>
 	      <td>${producto.seccion.nombre}</td>
-	      <td><a href="EliminarProducto?codigo=${producto.codigo}&&cantidad=${producto.cantidad}">Eliminar</a></td>
-	      <td><a href="FormularioModificar?codigo=${producto.codigo}">Modificar</a></td>
+	      <td><a class="btn btn-danger" href="EliminarProducto?codigo=${producto.codigo}&&cantidad=${producto.cantidad}">Eliminar</a></td>
+	      <td><a class="btn btn-warning" href="FormularioModificar?codigo=${producto.codigo}">Modificar</a></td>
+		  <td><a class="btn btn-success" href="AñadirCarrito?codigo=${producto.codigo}">Añadir al carrito</a></td>
 		  <td><input class="form-check-input" type="checkbox" value="${producto.id}"id="flexCheckDefault" name="idsproductos"></td>
 	      </tr>
 	  </c:forEach>

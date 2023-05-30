@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import clases.Producto;
 import clases.Seccion;
@@ -41,7 +42,14 @@ public class VerProductos extends HttpServlet {
 		ArrayList<Producto> productos = mP.verProductos();
 		mP.cerrar();
 		
+		HttpSession sesion = request.getSession();
+		ArrayList<Producto> carrito = (ArrayList<Producto>) sesion.getAttribute("carrito");
+		int cantidadCarrito = 0;
+		if (carrito != null) {
+			cantidadCarrito = carrito.size();
+		}
 		
+		request.setAttribute("carrito", cantidadCarrito);
 		request.setAttribute("productos", productos);
 		request.getRequestDispatcher("VistaProductos.jsp").forward(request, response);
 	}
